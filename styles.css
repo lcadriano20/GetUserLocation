@@ -6,6 +6,23 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+div {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+div p {
+    font-size: 25px;
+    padding: 25px 46px;
+    background: #fff;
+    margin-top: 10px;
+    border:none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #5372F0;
+}
+
 body {
     display: flex;
     align-items: center;

@@ -29,6 +29,9 @@ let API_LINK = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${lon
             let allDetails = result.results[0].components
             let {county,postcode,country} = allDetails
             showLocalization(county,postcode,country)
+            const cityName = allDetails.city
+            console.log(typeof cityName)
+           getWeatherData(cityName)
             console.table(allDetails)
         })
     } catch(err) {
@@ -54,3 +57,30 @@ function onError(error) {
 
 
 btn.addEventListener('click',buttonAction)
+
+// API to connect with Open Weather 
+const apiWeatherKey = "";
+
+const getWeatherData = async function(city) {
+    console.log(city)
+
+        const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiWeatherKey}&lang=pt_br`
+    
+        const res = await fetch(apiWeatherURL)
+        const data = await res.json()
+
+        const actualTemperature = data.main.temp
+
+        includeOnP(actualTemperature)
+    
+        return data
+    
+    
+
+}
+function includeOnP(actualTemperature) {
+    let paragraph = document.body.querySelector('p')
+
+    paragraph.innerText = `${actualTemperature}` + ' ' +  '°'
+
+}
